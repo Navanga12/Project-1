@@ -38,6 +38,7 @@
 
 body {
   margin: 0;
+  min-width: 320px;
   background: var(--bg);
   color: var(--text);
   font-family:
@@ -53,6 +54,12 @@ select {
 
 button {
   cursor: pointer;
+}
+
+input[type="checkbox"] {
+  width: 18px;
+  min-height: 18px;
+  accent-color: var(--primary);
 }
 
 button:disabled {
@@ -88,7 +95,8 @@ button:disabled {
 }
 
 .topbar h1 {
-  font-size: clamp(28px, 3vw, 42px);
+  max-width: 760px;
+  font-size: 38px;
   line-height: 1.08;
 }
 
@@ -230,7 +238,8 @@ button:disabled {
 .stat strong {
   display: block;
   margin-top: 8px;
-  font-size: clamp(24px, 2.5vw, 34px);
+  overflow-wrap: anywhere;
+  font-size: 32px;
   line-height: 1;
 }
 
@@ -379,6 +388,11 @@ tbody tr:last-child td {
 
 .product-name {
   font-weight: 800;
+  overflow-wrap: anywhere;
+}
+
+.product-cell .muted {
+  overflow-wrap: anywhere;
 }
 
 .stock-controls span {
@@ -494,17 +508,42 @@ tbody tr:last-child td {
   .stats-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
+
+  .form-panel {
+    display: grid;
+    grid-template-columns: minmax(0, 1.35fr) 1px minmax(240px, 0.65fr);
+    column-gap: 20px;
+  }
+
+  .form-panel > .section-heading {
+    grid-column: 1 / -1;
+  }
+
+  .form-panel > .divider {
+    width: 1px;
+    height: auto;
+    margin: 0;
+  }
 }
 
 @media (max-width: 680px) {
   .app-shell {
-    padding: 16px;
+    padding: 14px;
   }
 
   .topbar,
-  .section-heading,
   .list-heading {
     display: grid;
+  }
+
+  .topbar {
+    padding-top: 6px;
+    padding-bottom: 18px;
+  }
+
+  .topbar h1 {
+    font-size: 28px;
+    line-height: 1.15;
   }
 
   .topbar-actions,
@@ -522,8 +561,151 @@ tbody tr:last-child td {
     grid-template-columns: 1fr;
   }
 
+  .stats-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+  }
+
   .panel,
   .stat {
     padding: 14px;
+  }
+
+  .stat strong {
+    font-size: 26px;
+  }
+
+  .form-panel {
+    display: block;
+  }
+
+  .form-panel > .divider {
+    width: 100%;
+    height: 1px;
+    margin: 18px 0;
+  }
+
+  .product-panel {
+    min-width: 0;
+  }
+
+  .table-wrap {
+    overflow: visible;
+    border: 0;
+    border-radius: 0;
+  }
+
+  table,
+  tbody,
+  tr,
+  td {
+    display: block;
+    width: 100%;
+  }
+
+  table {
+    min-width: 0;
+  }
+
+  thead {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    clip-path: inset(50%);
+    white-space: nowrap;
+  }
+
+  tbody {
+    display: grid;
+    gap: 12px;
+  }
+
+  tbody tr {
+    overflow: hidden;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    background: var(--surface);
+  }
+
+  tbody td {
+    display: flex;
+    min-height: 46px;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 10px 12px;
+    text-align: right;
+  }
+
+  tbody td::before {
+    content: attr(data-label);
+    flex: 0 0 72px;
+    color: var(--muted);
+    font-size: 12px;
+    font-weight: 800;
+    text-align: left;
+    text-transform: uppercase;
+  }
+
+  tbody .product-cell {
+    align-items: flex-start;
+    text-align: right;
+  }
+
+  tbody .select-cell {
+    min-height: 40px;
+    background: var(--surface-soft);
+  }
+
+  .row-actions,
+  .stock-controls {
+    justify-content: flex-end;
+  }
+
+  .empty-state {
+    display: flex;
+    height: 112px;
+    justify-content: center;
+    text-align: center;
+  }
+
+  .empty-state::before {
+    display: none;
+  }
+
+  .history-item {
+    align-items: flex-start;
+  }
+
+  .history-meta {
+    display: grid;
+    justify-items: end;
+  }
+}
+
+@media (max-width: 400px) {
+  .app-shell {
+    padding: 10px;
+  }
+
+  .stats-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .topbar-actions,
+  .bulk-actions {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .panel,
+  .stat {
+    padding: 12px;
+  }
+
+  tbody td {
+    gap: 10px;
   }
 }

@@ -493,7 +493,7 @@ function App() {
               <tbody>
                 {filteredProducts.map((product) => (
                   <tr key={product.id}>
-                    <td>
+                    <td className="select-cell" data-label="Select">
                       <input
                         type="checkbox"
                         checked={selectedIds.includes(product.id)}
@@ -501,13 +501,13 @@ function App() {
                         aria-label={`Select ${product.name}`}
                       />
                     </td>
-                    <td>
+                    <td className="product-cell" data-label="Product">
                       <div className="product-name">{product.name}</div>
                       <div className="muted">{product.sku}</div>
                     </td>
-                    <td>{product.category}</td>
-                    <td>{formatMoney(product.price)}</td>
-                    <td>
+                    <td data-label="Category">{product.category}</td>
+                    <td data-label="Price">{formatMoney(product.price)}</td>
+                    <td data-label="Stock">
                       <div className="stock-controls">
                         <button
                           className="mini-button"
@@ -527,12 +527,12 @@ function App() {
                         </button>
                       </div>
                     </td>
-                    <td>
+                    <td data-label="Status">
                       <span className={product.stock > 0 ? "pill ok" : "pill empty"}>
                         {product.stock > 0 ? "In Stock" : "Out of Stock"}
                       </span>
                     </td>
-                    <td>
+                    <td data-label="Actions">
                       <div className="row-actions">
                         <button
                           className="icon-only"
