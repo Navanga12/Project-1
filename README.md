@@ -36,5 +36,8 @@ npm run build
 ```
 
 ## Screenshots
+#### Dashboard View
+![Dashboard](./screenshots/Add product.png)
 
-Add screenshots of the running application here before submitting the GitHub repository.
+#### Product Management Form
+![History](./screenshots/Products count and stock history.png)
