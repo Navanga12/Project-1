@@ -36,8 +36,10 @@ npm run build
 ```
 
 ## Screenshots
+
+
 #### Dashboard View
-![Dashboard](./Screenshots/Add product.png)
+![Dashboard](./Screenshots/add-product.png)
 
 #### Product Management Form
-![History](./Screenshots/Products count and stock history.png)
+![History](./Screenshots/stock-history.png)
